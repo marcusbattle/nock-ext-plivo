@@ -43,19 +43,19 @@ class Nock_API_Ext_Plivo {
 		$params = $data->get_params();
 
 		$params = wp_parse_args( $params, array(
-			'to'	=> '',
-			'msidn'	=> '',
-			'text'	=> '',
+			'From'	=> '',
+			'To'	=> '',
+			'Text'	=> '',
 		) );
 
-		if ( empty( $params['text'] ) ) {
+		if ( empty( $params['Text'] ) ) {
 			return array( 'error' => 'empty_message' );
 		}
 
 		$args = array(
 			'post_type' 	=> 'message',
 			'post_status' 	=> 'publish',
-			'post_content'	=> $params['text'],
+			'post_content'	=> $params['Text'],
 			'post_author'	=> 1,
 		);
 
