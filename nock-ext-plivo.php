@@ -69,6 +69,6 @@ class Nock_API_Ext_Plivo {
 
 }
 
-add_action( 'plugins_loaded', array( Nock_API_Ext_Nexmo::init(), 'hooks' ) );
+add_action( 'plugins_loaded', array( Nock_API_Ext_Plivo::init(), 'hooks' ) );
 
 
