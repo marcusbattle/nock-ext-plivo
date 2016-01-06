@@ -55,13 +55,23 @@ class Nock_API_Ext_Plivo {
 		$args = array(
 			'post_type' 	=> 'message',
 			'post_status' 	=> 'publish',
+			'post_title'	=> wp_trim_words( $params['Text'], 30, '' ),
 			'post_content'	=> $params['Text'],
 			'post_author'	=> 1,
 		);
 
 		$message_id = wp_insert_post( $args );
 
-		update_post_meta( $message_id, 'data', $params );
+		update_post_meta( $message_id, 'message_from', $params['From'] );
+		update_post_meta( $message_id, 'message_to', $params['To'] );
+		update_post_meta( $message_id, 'params', $params );
+
+		$update_args = array(
+			'ID'		=> $message_id,
+			'post_name'	=> $message_id,
+		);
+
+		wp_update_post( $update_args );
 
 		return array( 'message_id' => $message_id );
 
